@@ -14,7 +14,10 @@ class LoggerNotifier extends Notifier<String> {
   void addLog(String log) {
     // state は現在の値です。
     // 新しい文字列を作成して state に代入すると、UIが更新されます。
-    state = "$state\n$log";
+    if(state != ""){
+      state = "$state\n";
+    }
+    state = "$state$log";
   }
 
   /// ログのクリア

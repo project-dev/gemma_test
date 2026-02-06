@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gemma/flutter_gemma.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'logger.dart';
@@ -9,12 +8,7 @@ void main() {
   // Gemmaの初期化
   WidgetsFlutterBinding.ensureInitialized();
 
-  const hugFaceToken = String.fromEnvironment('HUGGINGFACE_TOKEN');
-
-  FlutterGemma.initialize(
-    huggingFaceToken: hugFaceToken,
-    maxDownloadRetries: 10,
-  );
+  Gemma.initialize();
 
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -58,6 +52,10 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
     final logger = ref.watch(loggerProvider.notifier);
     _logController.text = ref.watch(loggerProvider);
 
+    final selectModel = ref.watch(selectModelProvider);
+    final selectModelNotifier = ref.watch(selectModelProvider.notifier);
+    final executeState = ref.watch(executeStateProvider);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -68,7 +66,25 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // ボタン
+            // モデル選択
+            DropdownButton(
+              items: [
+                DropdownMenuItem(
+                  value: 0,
+                  child: Text('Gemma 3n(Hugging Face)'),
+                ),
+                DropdownMenuItem(
+                    value: 1,
+                    child: Text('Gemma 3(Local)'),
+                )
+              ],
+              value: selectModel,
+              onChanged: (value) {
+                selectModelNotifier.state = value!;
+              },
+            ),
+
+            // モデルのインストール
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -99,6 +115,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               ])
             ),
 
+            // プロンプトの入力
             Padding(
               padding: EdgeInsetsGeometry.all(16),
               child:
@@ -112,18 +129,22 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                 ),
             ),
 
-            TextButton(onPressed: modelInstallation == null ?
+            TextButton(onPressed: modelInstallation == null || executeState ?
               null :
               () async{
                 await Gemma.execute(ref, _promptController.text);
               },
               child: Text('OK')
             ),
+
+            // ログのクリア
             Row(
               children: [
+                TextButton(onPressed:() => executeState ? null : Gemma.reset(), child: Text('チャットのリセット')),
                 TextButton(onPressed:() => logger.clear(), child: Text('ログのクリア'))
               ],
             ),
+
             // ログエリア
             Expanded(
               child:

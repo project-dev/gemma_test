@@ -37,10 +37,10 @@ packages:
     dependency: transitive
     description:
       name: background_downloader
-      sha256: a913b37cc47a656a225e9562b69576000d516f705482f392e2663500e6ff6032
+      sha256: a3b340e42bc45598918944e378dc6a05877e587fcd0e1b8d2ea26339de87bdf9
       url: "https://pub.dev"
     source: hosted
-    version: "9.3.0"
+    version: "9.4.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -146,10 +146,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_gemma
-      sha256: eecf284a388854504e3f79933901d8234b5e3a9bd707c792410359d3484802f3
+      sha256: "8c981cbef6560104a75ee97a5ac064a249da92071bfe8b828c79aeb98477c26d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.11.11"
+    version: "0.11.13"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -196,10 +196,10 @@ packages:
     dependency: transitive
     description:
       name: http
-      sha256: bb2ce4590bc2667c96f318d68cac1b5a7987ec819351d32b1c987239a815e007
+      sha256: "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.0"
+    version: "1.6.0"
   http_multi_server:
     dependency: transitive
     description:
