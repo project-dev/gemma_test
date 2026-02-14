@@ -4,6 +4,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'logger.dart';
 import 'gemma.dart';
 
+import 'presentation/pages/chat_page.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // 初期化はUI層(Notifier)で制御するため、ここには記述しません。
+
+  runApp(
+    const ProviderScope(
+      child: MaterialApp(
+        title: 'Gemma 3 DDD Chat',
+        debugShowCheckedModeBanner: false,
+        home: ChatPage(),
+      ),
+    ),
+  );
+}
+
+/*
 void main() {
   // Gemmaの初期化
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +31,8 @@ void main() {
 
   runApp(const ProviderScope(child: MyApp()));
 }
-
+*/
+/*
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -71,11 +91,19 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               items: [
                 DropdownMenuItem(
                   value: 0,
-                  child: Text('Gemma 3n(Hugging Face)'),
+                  child: Text('Download Gemma3-270 it'),
                 ),
                 DropdownMenuItem(
-                    value: 1,
-                    child: Text('Gemma 3(Local)'),
+                  value: 1,
+                  child: Text('Gemma3-270 it default'),
+                ),
+                DropdownMenuItem(
+                  value: 2,
+                  child: Text('Gemma3-270 it Arrows We2'),
+                ),
+                DropdownMenuItem(
+                  value: 3,
+                  child: Text('Gemma3-270 it POCO F6 Pro'),
                 )
               ],
               value: selectModel,
@@ -168,3 +196,4 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
     );
   }
 }
+*/

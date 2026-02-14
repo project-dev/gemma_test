@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter_gemma/flutter_gemma.dart';
-import 'package:gemma_test/contract/repositories/i_gemma_repository.dart';
-import 'package:gemma_test/domain/value_objects/message_content.dart';
+import '../../contract/repositories/i_gemma_repository.dart';
+import '../../domain/value_objects/message_content.dart';
 
 class GemmaRepositoryImpl implements IGemmaRepository {
   // セッションオブジェクト（型が公開されていない場合があるためdynamicで保持）
@@ -33,6 +33,10 @@ class GemmaRepositoryImpl implements IGemmaRepository {
       onProgress?.call(progress);
     })
         .install();
+
+    if (installation == null) {
+      throw Exception("モデルのインストールに失敗しました");
+    }
 
     // 3. インストール完了後、モデルをロードしてセッションを作成
     await _loadActiveModel();

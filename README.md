@@ -3,13 +3,19 @@
 スマホでローカルLLMを動かしたくて、なんならプログラム組んで動かしたいなと思ったのでやってみいました。
 Androidでのみ動作を確認しています。
 gemma-3n-E2B-it-litert-lm をダウンロードして使用します。
-メモリが充分にある機種で動かすことができます。
-(Arrows We2で試しに動かしたら落ちました)
+
+| 機種          | 状況     |
+|-------------|--------|
+| POCO F6 Pro | 動作しました |
+| ROG Phone   | 落ちました  |
+| Arrows We2  | 落ちました  |
+
+お試しなのとReverpodの使い方がいまいちなのは目を瞑ってください。
 
 # 注意点
 
 ## config.json
-onfig.jsonを以下の形式で作成してください。
+ルートにconfig.jsonを以下の形式で作成してください。
 ```json
 {
   "HUGGINGFACE_TOKEN": "hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
